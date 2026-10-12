@@ -1,0 +1,7 @@
+# ROMs niemals einchecken
+rom/
+*.z64
+*.v64
+*.n64
+build/
+__pycache__/

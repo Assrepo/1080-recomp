@@ -1,0 +1,26 @@
+# N64Recomp-Konfiguration für 1080° Snowboarding (USA, NTEE).
+# Pfade sind relativ zu dieser Datei. Der ROM wird NICHT mitgeliefert -
+# eigenen Dump als rom/1080.us.z64 ablegen (siehe README).
+
+[input]
+# Wird von scripts/recompile.sh aus dem ROM-Header übernommen, falls abweichend.
+entrypoint = 0x80000400
+output_func_path = "../build/RecompiledFuncs"
+symbols_file_path = "../build/1080.us.syms.toml"
+rom_file_path = "../rom/1080.us.z64"
+# Viele kleine Dateien verlangsamen den Build - Funktionen bündeln.
+functions_per_output_file = 50
+
+[patches]
+# Funktionen, die nicht recompiliert, sondern als leer übernommen werden
+# (z. B. Debug-Code, der direkt RCP-Register anfasst).
+stubs = []
+
+# Adressen, die die Funktionserkennung fälschlich als Funktion meldet.
+ignored = []
+
+# Einzelne Instruktionen patchen:
+# [[patches.instruction]]
+# func = "func_80001234"
+# vram = 0x80001240
+# value = 0x00000000 # nop
